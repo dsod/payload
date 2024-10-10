@@ -127,6 +127,15 @@ export const createClientCollectionConfig = ({
       clientCollection.admin.components.edit =
         {} as ClientCollectionConfig['admin']['components']['edit']
 
+      if (collection.admin.components.edit?.DeleteDocument) {
+        clientCollection.admin.components.edit.DeleteDocument = createMappedComponent(
+          collection.admin.components.edit.DeleteDocument,
+          undefined,
+          undefined,
+          'collection.admin.components.edit.DeleteDocument',
+        )
+      }
+
       if (collection.admin.components.edit?.PreviewButton) {
         clientCollection.admin.components.edit.PreviewButton = createMappedComponent(
           collection.admin.components.edit.PreviewButton,

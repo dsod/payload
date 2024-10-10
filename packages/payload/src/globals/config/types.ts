@@ -1,6 +1,7 @@
 import type { GraphQLNonNull, GraphQLObjectType } from 'graphql'
 import type { DeepRequired } from 'ts-essentials'
 
+import type { CustomDeleteDocument } from '../../admin/elements/DeleteDocument.js'
 import type {
   CustomPreviewButton,
   CustomPublishButton,
@@ -76,6 +77,10 @@ export type GlobalAdminOptions = {
    */
   components?: {
     elements?: {
+      /**
+       * Replaces the "Delete" button
+       */
+      DeleteDocument?: CustomDeleteDocument
       Description?: EntityDescriptionComponent
       /**
        * Replaces the "Preview" button

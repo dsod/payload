@@ -294,6 +294,10 @@ export const DocumentControls: React.FC<{
                   <DeleteDocument
                     buttonId="action-delete"
                     collectionSlug={collectionConfig?.slug}
+                    CustomComponent={
+                      collectionConfig?.admin?.components?.edit?.DeleteDocument ||
+                      globalConfig?.admin?.components?.elements?.DeleteDocument
+                    }
                     id={id.toString()}
                     onDelete={onDelete}
                     redirectAfterDelete={redirectAfterDelete}

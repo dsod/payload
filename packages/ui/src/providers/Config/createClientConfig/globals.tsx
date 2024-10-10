@@ -80,6 +80,15 @@ export const createClientGlobalConfig = ({
         clientGlobal.admin.components.elements =
           {} as ClientGlobalConfig['admin']['components']['elements']
 
+        if (global.admin.components.elements?.DeleteDocument) {
+          clientGlobal.admin.components.elements.DeleteDocument = createMappedComponent(
+            global.admin.components.elements.DeleteDocument,
+            undefined,
+            undefined,
+            'global.admin.components.elements.DeleteDocument',
+          )
+        }
+
         if (global.admin.components.elements?.PreviewButton) {
           clientGlobal.admin.components.elements.PreviewButton = createMappedComponent(
             global.admin.components.elements.PreviewButton,

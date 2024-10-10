@@ -18,6 +18,7 @@ export type ClientGlobalConfig = {
   admin: {
     components: {
       elements: {
+        DeleteDocument: MappedComponent
         PreviewButton: MappedComponent
         PublishButton: MappedComponent
         SaveButton: MappedComponent

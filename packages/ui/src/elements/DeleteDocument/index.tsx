@@ -1,5 +1,5 @@
 'use client'
-import type { ClientCollectionConfig, SanitizedCollectionConfig } from 'payload'
+import type { ClientCollectionConfig, MappedComponent, SanitizedCollectionConfig } from 'payload'
 
 import { Modal, useModal } from '@faceless-ui/modal'
 import { getTranslation } from '@payloadcms/translations'
@@ -11,6 +11,7 @@ import type { DocumentInfoContext } from '../../providers/DocumentInfo/index.js'
 
 import { useForm } from '../../forms/Form/context.js'
 import { useConfig } from '../../providers/Config/index.js'
+import { RenderComponent } from '../../providers/Config/RenderComponent.js'
 import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
 import { useEditDepth } from '../../providers/EditDepth/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
@@ -27,6 +28,7 @@ const baseClass = 'delete-document'
 export type Props = {
   readonly buttonId?: string
   readonly collectionSlug: SanitizedCollectionConfig['slug']
+  readonly CustomComponent?: MappedComponent
   readonly id?: string
   readonly onDelete?: DocumentInfoContext['onDelete']
   readonly redirectAfterDelete?: boolean
@@ -35,7 +37,7 @@ export type Props = {
   readonly useAsTitle: SanitizedCollectionConfig['admin']['useAsTitle']
 }
 
-export const DeleteDocument: React.FC<Props> = (props) => {
+export const DefaultDeleteDocument: React.FC<Omit<Props, 'CustomComponent'>> = (props) => {
   const {
     id,
     buttonId,
@@ -222,4 +224,12 @@ export const DeleteDocument: React.FC<Props> = (props) => {
   }
 
   return null
+}
+
+export const DeleteDocument: React.FC<Props> = ({ CustomComponent, ...rest }) => {
+  if (CustomComponent) {
+    return <RenderComponent mappedComponent={CustomComponent} />
+  }
+
+  return <DefaultDeleteDocument {...rest} />
 }

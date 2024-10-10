@@ -33,6 +33,7 @@ export type ClientCollectionConfig = {
       beforeListTable: MappedComponent[]
       Description: MappedComponent
       edit: {
+        DeleteDocument: MappedComponent
         PreviewButton: MappedComponent
         PublishButton: MappedComponent
         SaveButton: MappedComponent
